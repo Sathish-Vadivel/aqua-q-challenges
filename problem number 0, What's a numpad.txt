@@ -1,7 +1,8 @@
 problem number: 0, What's a numpad?
-
+===================================
 
 QUESTION:-
+=========
 
 Some people might remember T9 phone inputs, in which the numbers 2 to 9 have associated letters, and 0 acts as a space. Key 2 has "abc", 3 has "def" etc:
 
@@ -68,6 +69,7 @@ GIVEN INPUT:-
 9 1
 
 ANSWER:-
+=======
 
 q)table: flip `num`char!((1 2 3 4 5 6 7 8 9 0); (" "; "abc"; "def"; "ghi"; "jkl"; "mno"; "pqrs"; "tuv"; "wxyz"; enlist" "))
 q)table
