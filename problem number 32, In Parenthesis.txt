@@ -1,0 +1,59 @@
+GIVEN PROBLEM:-
+--------------
+While out shopping, you realise your trousers are falling down - it seems you have forgotten your belt. You realise there are no belt shops in sight, but hope grows when you see a shop whose sign simply reads "Braces".
+
+Upon entering you realise your mistake - this shop simply sells ASCII characters, with a particular emphasis on (, ), [, ], {, and of course }. Desperate to cover your highly embarrassing error, you nod to the shop assistant and shuffle carefully to the ASCII pick-and-mix at the back. You fill up the long thin bags available with individual character strings, and bring them to the counter. The shop assistant looks at your bags, back to you, and back to your bags. He exclaims that surely, surely, you must be joking! Some of these strings have unbalanced braces!
+
+The shame overwhelms you as you slink back to a worktop, and begin examining your hastily-assembled strings more carefully. You realise there are several hundred thousand characters to check, glance back at the assistant twiddling his moustache in delight and begin to wonder if you actually died in that car crash last week.
+
+To weather this existential crisis, in your input set of strings, determine how many lines have brackets (the above set of "()[]{}") which are correctly balanced - that is, the same number of opening and closing pairs, and no pairs which are incorrectly split by other brackets or missing another half.
+
+For example, correctly balanced strings:
+()
+([]{})
+(a[b[]]c){}
+
+
+Compared to incorrectly balanced strings:
+)()
+([a)]
+]{}[
+((a)){]
+
+
+The answer is the total number of balanced lines in your input - for the above set of 7 rows, the answer would be 3.
+
+GIVEN INPUT:-
+-----------
+Given input stored in the file name called "parenthesis_input.txt"
+
+--------------------------------------------------------------------------------------------------------------------
+
+SOLUTION:-
+---------
+q)mainFunction: {[pass] var1:pass where pass in "{[()]}"; {[input] v1:1 cut input; {l1,::x;$[all ((first -2#l1),(last -2#l1))="()";l1::-2_l1;all ((first -2#l1),(last -2#l1))="[]";l1::-2_l1;all ((first -2#l1),(last -2#l1))="{}";l1::-2_l1]}'[v1]; if[(count l1)=0; correct+::1]; delete l1 from `.}[var1]}
+q)
+q)
+q)
+q)list:read0 `:parenthesis_input.txt
+q)
+q)
+q)list
+"izpyxr({k}yrqw) i((z{a}nlw[{{[ic{}]()d}fb[[]q]}]))x g c(l{hee[]dpikaqv({}c{vqm}ils)f}cg([d]))"
+"ztfeeq[c](stj){{zgf}z(l{tv})z([]c)}  kat{ea} [b{iz}g{js{}}xe{jld}l]owbuxfr r{mymj}((c)[n])[] sp"
+"rpiakwnlp{[]}lm(js) [d]dqvhx[h{}a([b(v)hostc])]{}()l[]e v[[]w]abj wa {} ur[]j[]   z{ucnoz}[]   "
+"sz}yah[vg(kg)va  u[yv] jfw{h(y(g()()(ub))}(t)[][(()[])  {{}dln}pg[]  {oyak}{nntz({}){{(e)siy}}t{}z}c}"
+"giwkw{a}(fmt)ld(uuh)cus udovxp[]o() xy ew  u   swb  fg(a){{}g()bp} lljycfc  aihe ilqhu []()v fi "
+"pcoutxy][{mbp}hr] d of q[] d()b)wud({jxlb}) [()[[k[b][vn]())]]k{{{jlvf)[]}frla{s{){vfmj}ituy}(})qtl}k}hm "
+"((x[{pgie}d]{y}kqw[]e)({(dw)fb}{klsfiyrtd}r))pc q u[m]ici {[qvkw{x}s][fibt{pzp}()s{}yv]x{}q}()m   "
+"nm[j]{}[]z yeat p tqptnmy    w (m[h]{}{()(ci)l}()) hr{bf}{a({}r())}[] e zcqa(jhhudjam){kvwd}[[][]]"
+"qta[l] {}  {v{jzwn} vjz v(k)wvq ns t(m)s(o[)[ii]xaj)z  qun{[(]}{txa[cg[bz()q]]}[bf] lbd {}l  [bi]zrmrbg"
+"zb(dt) e  ee[()[n(s)y]u]qv{h{h}ihze()}rcoje  [rw{psj}{a{}}()[]]xnzojv[]g[{}{zdw}]y {{{t{edo}}f}u}{}"
+..
+q)count list
+1000
+q)mainFunction each list
+`.`.`.`.`.`.`.`.`.`.`.`.`.`....
+//correct is the variable which stores the final output
+q)correct
+616
