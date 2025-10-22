@@ -1,6 +1,5 @@
 problem number: 17, The Beautiful Shame
 
-
 QUESTION:-
 
 It's the world cup! National glory is at stake! But who has accrued the most national shame?
@@ -23,7 +22,6 @@ Genoa      1900.01.03 0
 Genoa      1900.01.06 0
 Genoa      1901.01.21 1
 Somaliland 1902.01.01 1
-
 
 The longest streak here is Somaliland, so the answer would be
 Somaliland 19000103 19020101
