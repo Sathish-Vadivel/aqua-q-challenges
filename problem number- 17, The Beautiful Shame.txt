@@ -1,0 +1,66 @@
+problem number: 17, The Beautiful Shame
+
+
+QUESTION:-
+
+It's the world cup! National glory is at stake! But who has accrued the most national shame?
+
+We'll define shame as days on a goalless streak - any national team who plays an international game and finishes without scoring is in a state of shame, starting that day. The shame ends the day they score a goal in another international game. Your input is a list of international football matches going back to November 1872, and ending 2018.06.24. Which nation has the longest closed goalless streak, across which dates? Any goalless streak currently running shouldn't be counted, and the answer should be presented as:
+team startdate enddate
+
+with dates in YYYYMMDD format. The answer is case-sensitive!
+
+For example, slightly reformatted results for three teams are like so:
+
+team       date       score
+---------------------------
+Somaliland 1900.01.01 1
+Formosa    1900.01.01 0
+Genoa      1900.01.01 1
+Genoa      1900.01.02 0
+Somaliland 1900.01.03 0
+Genoa      1900.01.03 0
+Genoa      1900.01.06 0
+Genoa      1901.01.21 1
+Somaliland 1902.01.01 1
+
+
+The longest streak here is Somaliland, so the answer would be
+Somaliland 19000103 19020101
+
+GIVEN INPUT:-
+
+given input was storeed in the file name called challenge17_input.csv
+
+ANSWER:-
+======
+
+q)old_table:("DSSIISSSS";enlist ",")0: `:challenge17_input.csv
+
+q)table:([] Location:();Date:();Value:())
+
+q){`table insert (x(`home_team);x(`date);x(`home_score));`table insert (x(`away_team);x(`date);x(`away_score))}'[old_table]
+
+q)a:exec distinct Location from table
+
+q)fun:{b:select from table where Location = x; table5:([] Location:();Date:();Value:()); while[(count b)>0; while[first (b[`Value]) > 0; b:1_b; b]; table5:table5,1#b; b:1_b; while[first (b[`Value]) = 0; b:1_b; b]; table5:table5,1#b; b:1_b];:table5};
+
+q)fun'[a]
+
+q)table100:([]Location:();Date:();Value:())
+
+q)fun2:{table100::table100,fun[x]}
+
+q)fun2'[a]
+
+q)final_table:([] team:();startdate:();enddate:())
+
+q)jval:2 cut table100
+
+q)while[(count jval)>0;`final_table insert ((first (first 1#jval)[`Location]); (first ((first 1#jval)[`Date])); (last (first 1#jval)[`Date]));jval::1_jval]
+
+q)update tot_days:{x-y}'[enddate;startdate] from `final_table
+
+q)update startdate:`${ (string x)except "."}'[startdate], enddate:`${(string x)except "."}'[enddate] from `final_table
+
+q)select team, startdate, enddate from final_table where tot_days = max tot_days
